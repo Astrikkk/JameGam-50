@@ -5,7 +5,7 @@ using UnityEngine;
 public class Equipment : MonoBehaviour
 {
     [SerializeField] private bool isWorking = true;
-    [SerializeField] private bool isBroken = true;
+    [SerializeField] private bool isBroken = false;
     [SerializeField] private GameObject alertSign; //Appear on top of broken equipment to show that it is broken, get atention
     [SerializeField] private GameObject fixMenu;
     [SerializeField] private GameObject actionMenu;
@@ -14,18 +14,25 @@ public class Equipment : MonoBehaviour
 
 
     
+    public void OpenFixMenu()
+    {
+        fixMenu.SetActive(true);
+    }
 
     private void BreakDown()
     {
         //activate animation and state
         isWorking = false;
         isBroken = true;
+        alertSign.SetActive(false);
     }
 
     private void ActionActivation(bool state) //will activate such things as menu, anumation and so on if needeed
     {
         activePlayer = state;
-        actionMenu.SetActive(state);
+        if (isBroken == true) {
+            actionMenu.SetActive(state);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
