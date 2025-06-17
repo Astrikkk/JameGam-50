@@ -50,6 +50,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isGrounded) {
             horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (horizontalInput > 0.1f)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            else if (horizontalInput < -0.1f)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);    
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
