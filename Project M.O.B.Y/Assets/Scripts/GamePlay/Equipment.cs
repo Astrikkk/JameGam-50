@@ -35,8 +35,10 @@ public class Equipment : MonoBehaviour, IInteractable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Player left the equipment area");
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player left the equipment area, hiding alert sign and fix menu");
             alertSign.SetActive(false);
             fixMenu.SetActive(false);
         }
